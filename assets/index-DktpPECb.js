@@ -29,30 +29,40 @@ date: ${e.date}
 source: ${e.metadata.source}
 ---
 
-${e.content}`}},wu=({rawText:e,onProcessed:t})=>{let[n,r]=(0,b.useState)(!1),[i,a]=(0,b.useState)(``),o=async()=>{r(!0),a(`Error: VITE_OPENROUTER_KEY no configurada.`),r(!1)};return(0,b.useEffect)(()=>{e&&!i&&o()},[e]),(0,H.jsxs)(`div`,{className:`ai-explainer-container`,children:[(0,H.jsx)(`div`,{className:`ai-status`,children:n?(0,H.jsxs)(`div`,{className:`skeleton-container`,children:[(0,H.jsx)(`div`,{className:`skeleton skeleton-text`,style:{width:`60%`}}),(0,H.jsx)(`div`,{className:`skeleton skeleton-text`}),(0,H.jsx)(`div`,{className:`skeleton skeleton-text`}),(0,H.jsx)(`div`,{className:`skeleton skeleton-text`,style:{width:`80%`}})]}):(0,H.jsxs)(`div`,{className:`ai-result`,children:[(0,H.jsx)(`div`,{className:`ai-header`,children:`SÍNTESIS JURÍDICA (AUDITORÍA IA)`}),(0,H.jsx)(`div`,{className:`ai-content`,children:i})]})}),(0,H.jsx)(`style`,{dangerouslySetInnerHTML:{__html:`
+${e.content}`}},wu=({rawText:e,onProcessed:t})=>{let[n,r]=(0,b.useState)(!1),[i,a]=(0,b.useState)(``),[o,s]=(0,b.useState)(``),c=`Eres un Auditor Legal de élite. Tu misión es resumir fallos judiciales en tres bloques estrictos: [CONTEXTO], [LITIS] y [ANALOGÍA]. Mantén un tono académico y sofisticado. Formatea la salida para resaltar los títulos de cada bloque.`,l=async e=>{let t=await fetch(`https://api.groq.com/openai/v1/chat/completions`,{method:`POST`,headers:{Authorization:`Bearer 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`,"Content-Type":`application/json`},body:JSON.stringify({model:`llama3-70b-8192`,messages:[{role:`system`,content:c},{role:`user`,content:`Procesa el siguiente texto legal:\n\n${e}`}],temperature:.2})});if(!t.ok)throw Error(`Groq Error: ${t.status}`);return(await t.json()).choices[0].message.content},u=async e=>{let t=await fetch(`https://openrouter.ai/api/v1/chat/completions`,{method:`POST`,headers:{Authorization:`Bearer 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`,"Content-Type":`application/json`},body:JSON.stringify({model:`google/gemini-2.0-flash-001`,messages:[{role:`system`,content:c},{role:`user`,content:`Procesa el siguiente texto legal:\n\n${e}`}]})});if(!t.ok)throw Error(`OpenRouter Error: ${t.status}`);return(await t.json()).choices[0].message.content},d=async()=>{r(!0),a(``);try{let n=await l(e);a(n),s(`Groq (Llama-3)`),t&&t(n)}catch(n){console.warn(`Groq falló, usando fallback...`,n);try{let n=await u(e);a(n),s(`OpenRouter (Gemini)`),t&&t(n)}catch(e){console.error(`Ambos cerebros fallaron:`,e),a(`Error crítico: El sistema de IA no está disponible actualmente.`)}}finally{r(!1)}};return(0,b.useEffect)(()=>{e&&!i&&d()},[e]),(0,H.jsxs)(`div`,{className:`ai-explainer-container`,children:[(0,H.jsx)(`div`,{className:`ai-status`,children:n?(0,H.jsxs)(`div`,{className:`skeleton-container`,children:[(0,H.jsx)(`div`,{className:`skeleton skeleton-text`,style:{width:`60%`}}),(0,H.jsx)(`div`,{className:`skeleton skeleton-text`}),(0,H.jsx)(`div`,{className:`skeleton skeleton-text`})]}):(0,H.jsxs)(`div`,{className:`ai-result`,children:[(0,H.jsxs)(`div`,{className:`ai-header`,children:[`SÍNTESIS JURÍDICA (AUDITORÍA IA)`,o&&(0,H.jsxs)(`span`,{className:`engine-badge`,children:[`PRP: `,o]})]}),(0,H.jsx)(`div`,{className:`ai-content`,children:i})]})}),(0,H.jsx)(`style`,{dangerouslySetInnerHTML:{__html:`
         .ai-explainer-container {
           margin-top: 1rem;
-          padding: 1rem;
-          background: rgba(212, 175, 55, 0.05);
-          border-left: 3px solid #D4AF37;
-          font-size: 0.9rem;
-          line-height: 1.6;
+          padding: 1.5rem;
+          background: rgba(212, 175, 55, 0.03);
+          border-left: 4px solid #D4AF37;
+          border-radius: 4px;
         }
         .ai-header {
           font-weight: bold;
           color: #D4AF37;
-          margin-bottom: 0.5rem;
+          margin-bottom: 1rem;
           letter-spacing: 1px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 0.8rem;
+        }
+        .engine-badge {
+          font-size: 0.6rem;
+          background: rgba(212, 175, 55, 0.1);
+          padding: 0.2rem 0.5rem;
+          border-radius: 4px;
+          color: #888;
         }
         .ai-content {
           white-space: pre-wrap;
-          color: #444;
+          color: var(--text-main);
+          font-family: var(--font-serif);
+          font-size: 1.1rem;
+          line-height: 1.7;
         }
-        .typing-animation {
-          font-style: italic;
-          color: #D4AF37;
-        }
-      `}})]})},Tu=({isOpen:e,toggle:t,history:n,favorites:r,onHistoryClick:i,isNightMode:a,toggleNightMode:o})=>(0,H.jsxs)(Su.div,{initial:{x:-300},animate:{x:e?0:-300},className:`sidebar-container ${a?`night-mode`:``}`,children:[(0,H.jsxs)(`div`,{className:`sidebar-header`,children:[(0,H.jsx)(`h3`,{children:`Dashboard`}),(0,H.jsx)(`button`,{onClick:t,className:`close-btn`,children:`×`})]}),(0,H.jsxs)(`div`,{className:`sidebar-section`,children:[(0,H.jsx)(`h4`,{children:`Historial`}),(0,H.jsx)(`div`,{className:`list-items`,children:n.map((e,t)=>(0,H.jsx)(`div`,{className:`list-item`,onClick:()=>i(e),children:e},t))})]}),(0,H.jsxs)(`div`,{className:`sidebar-section`,children:[(0,H.jsx)(`h4`,{children:`Favoritos`}),(0,H.jsx)(`div`,{className:`list-items`,children:r.map((e,t)=>(0,H.jsx)(`div`,{className:`list-item`,children:e.title},t))})]}),(0,H.jsxs)(`div`,{className:`sidebar-section`,children:[(0,H.jsxs)(`h4`,{style:{display:`flex`,alignItems:`center`,gap:`0.5rem`},children:[`Herramientas `,(0,H.jsx)(`span`,{className:`badge-new`,children:`NUEVO`})]}),(0,H.jsx)(`div`,{className:`list-items`,children:(0,H.jsx)(`div`,{className:`list-item tool-item`,onClick:()=>i(`CLASES_ARCHIVE`),children:`📂 Clases Grabadas (Ciclo 2026)`})})]}),(0,H.jsx)(`div`,{className:`sidebar-footer`,children:(0,H.jsxs)(`label`,{className:`night-mode-toggle`,children:[(0,H.jsx)(`span`,{children:`Modo Noche`}),(0,H.jsx)(`input`,{type:`checkbox`,checked:a,onChange:o})]})}),(0,H.jsx)(`style`,{dangerouslySetInnerHTML:{__html:`
+        [data-theme='night'] .ai-content { color: #f9f7f2; }
+      `}})]})},Tu=({isOpen:e,toggle:t,history:n,favorites:r,onHistoryClick:i,isNightMode:a,toggleNightMode:o})=>(0,H.jsxs)(Su.div,{initial:{x:-300},animate:{x:e?0:-300},className:`sidebar-container ${a?`night-mode`:``}`,children:[(0,H.jsxs)(`div`,{className:`sidebar-header`,children:[(0,H.jsxs)(`h3`,{style:{display:`flex`,alignItems:`center`,gap:`0.8rem`},children:[`Dashboard`,(0,H.jsx)(`span`,{className:`api-status-dot active`})]}),(0,H.jsx)(`button`,{onClick:t,className:`close-btn`,children:`×`})]}),(0,H.jsxs)(`div`,{className:`sidebar-section`,children:[(0,H.jsx)(`h4`,{children:`Historial`}),(0,H.jsx)(`div`,{className:`list-items`,children:n.map((e,t)=>(0,H.jsx)(`div`,{className:`list-item`,onClick:()=>i(e),children:e},t))})]}),(0,H.jsxs)(`div`,{className:`sidebar-section`,children:[(0,H.jsx)(`h4`,{children:`Favoritos`}),(0,H.jsx)(`div`,{className:`list-items`,children:r.map((e,t)=>(0,H.jsx)(`div`,{className:`list-item`,children:e.title},t))})]}),(0,H.jsxs)(`div`,{className:`sidebar-section`,children:[(0,H.jsxs)(`h4`,{style:{display:`flex`,alignItems:`center`,gap:`0.5rem`},children:[`Herramientas `,(0,H.jsx)(`span`,{className:`badge-new`,children:`NUEVO`})]}),(0,H.jsx)(`div`,{className:`list-items`,children:(0,H.jsx)(`div`,{className:`list-item tool-item`,onClick:()=>i(`CLASES_ARCHIVE`),children:`📂 Clases Grabadas (Ciclo 2026)`})})]}),(0,H.jsx)(`div`,{className:`sidebar-footer`,children:(0,H.jsxs)(`label`,{className:`night-mode-toggle`,children:[(0,H.jsx)(`span`,{children:`Modo Noche`}),(0,H.jsx)(`input`,{type:`checkbox`,checked:a,onChange:o})]})}),(0,H.jsx)(`style`,{dangerouslySetInnerHTML:{__html:`
         .sidebar-container {
           position: fixed;
           top: 0;
@@ -96,6 +106,17 @@ ${e.content}`}},wu=({rawText:e,onProcessed:t})=>{let[n,r]=(0,b.useState)(!1),[i,
         .sidebar-footer { margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 1rem; }
         .close-btn { background: none; border: none; font-size: 2rem; color: #D4AF37; cursor: pointer; }
         .night-mode-toggle { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer; }
+        .api-status-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #ff4d4d;
+          box-shadow: 0 0 5px rgba(255, 77, 77, 0.5);
+        }
+        .api-status-dot.active {
+          background: #4dff4d;
+          box-shadow: 0 0 8px rgba(77, 255, 77, 0.8);
+        }
       `}})]}),Eu=({selected:e,onSelect:t})=>(0,H.jsxs)(`div`,{className:`filter-chips-container`,children:[[`Civil`,`Penal`,`Laboral`,`Constitucional`].map(n=>(0,H.jsx)(`button`,{className:`chip ${e===n?`active`:``}`,onClick:()=>t(n===e?null:n),children:n},n)),(0,H.jsx)(`style`,{dangerouslySetInnerHTML:{__html:`
         .filter-chips-container {
           display: flex;
