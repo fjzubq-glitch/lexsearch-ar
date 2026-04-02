@@ -56,7 +56,7 @@ class DataIngestor {
       fuente: `Transcripción: ${t.materia} (${t.fecha})`,
       type: 'transcription',
       snippet: `Inyección literal: ${t.topics.join(', ')}`,
-      url: `/${t.path}`
+      url: `/${t.path.replace('public/', '')}`
     }));
 
     return [...matches, ...transcriptionMatches];

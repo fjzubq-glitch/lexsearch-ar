@@ -1,8 +1,14 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+import ApiRotator from "./apiRotator";
+
 class GeminiRestService {
   constructor() {
-    this.apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    this.updateApiKey();
+  }
+
+  updateApiKey() {
+    this.apiKey = ApiRotator.getNextKey();
     if (this.apiKey) {
       this.genAI = new GoogleGenerativeAI(this.apiKey);
       // Usamos el modelo más estable para REST
@@ -26,8 +32,21 @@ class GeminiRestService {
       const response = await result.response;
       return response.text().trim();
     } catch (error) {
-      console.error("Error en GeminiRestService:", error);
-      return "Hubo un error de conexión con la cátedra virtual. Por favor, intente de nuevo.";
+      console.error("Error en GeminiRestService, rotando llave...", error);
+      this.updateApiKey();
+      
+      // Reintento único con la nueva llave
+      if (this.apiKey) {
+        try {
+          const result = await this.model.generateContent(`${systemPrompt}\n\nPregunta del Alumno: ${message}`);
+          const response = await result.response;
+          return response.text().trim();
+        } catch (retryError) {
+          console.error("Error definitivo tras rotación:", retryError);
+        }
+      }
+      
+      return "Hubo un error de conexión con la cátedra virtual (Límite de cuota excedido). Por favor, intente de nuevo en unos segundos.";
     }
   }
 }
