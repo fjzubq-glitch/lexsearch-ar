@@ -1,9 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import GeminiLiveService from './services/GeminiLiveService';
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [leyes, setLeyes] = useState([]);
   const [filteredLeyes, setFilteredLeyes] = useState([]);
+  const [isVoiceActive, setIsVoiceActive] = useState(false);
+  const [voiceStatus, setVoiceStatus] = useState('Inactivo');
+  const [voiceResponse, setVoiceResponse] = useState('');
+  const [isListening, setIsListening] = useState(false);
+  
+  const recognitionRef = useRef(null);
 
   useEffect(() => {
     // Carga inicial del índice de leyes
@@ -14,6 +21,29 @@ const App = () => {
         setFilteredLeyes(data.leyes || []);
       })
       .catch(error => console.error('Error cargando el índice:', error));
+
+    // Configurar reconocimiento de voz (Web Speech API para captura simple)
+    if ('webkitSpeechRecognition' in window) {
+      recognitionRef.current = new window.webkitSpeechRecognition();
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
+      recognitionRef.current.lang = 'es-AR';
+
+      recognitionRef.current.onresult = async (event) => {
+        const transcript = event.results[0][0].transcript;
+        console.log('User said:', transcript);
+        await handleVoiceQuery(transcript);
+      };
+
+      recognitionRef.current.onend = () => {
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+        setIsListening(false);
+      };
+    }
   }, []);
 
   useEffect(() => {
@@ -24,6 +54,49 @@ const App = () => {
     );
     setFilteredLeyes(results);
   }, [searchQuery, leyes]);
+
+  const toggleVoiceTutor = async () => {
+    if (!isVoiceActive) {
+      setVoiceStatus('Conectando...');
+      const connected = await GeminiLiveService.connect(
+        (msg) => console.log('Live Msg:', msg),
+        (err) => setVoiceStatus(`Error: ${err}`)
+      );
+      if (connected) {
+        setIsVoiceActive(true);
+        setVoiceStatus('Tutor de Voz Activo');
+      }
+    } else {
+      GeminiLiveService.disconnect();
+      setIsVoiceActive(false);
+      setVoiceStatus('Inactivo');
+      setVoiceResponse('');
+    }
+  };
+
+  const handleVoiceQuery = async (query) => {
+    setVoiceStatus('Pensando...');
+    const systemPrompt = `Actúa como un tutor jurídico experto en derecho argentino bajo el protocolo LexSearch Gold. 
+    Tu objetivo es explicar las leyes de forma clara y académica. 
+    Aquí tienes el índice de leyes disponibles: ${JSON.stringify(leyes)}. 
+    Responde de forma concisa y premium.`;
+
+    const response = await GeminiLiveService.sendMessage(query, systemPrompt);
+    setVoiceResponse(response);
+    setVoiceStatus('Tutor de Voz Activo');
+    
+    // Sintetizar voz (Web Speech API)
+    const utterance = new SpeechSynthesisUtterance(response);
+    utterance.lang = 'es-AR';
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const startListening = () => {
+    if (recognitionRef.current) {
+      setIsListening(true);
+      recognitionRef.current.start();
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#F0F7FF] text-[#050505] font-sans selection:bg-blue-200">
@@ -40,11 +113,46 @@ const App = () => {
           </div>
         </div>
         <div className="flex items-center gap-6">
+          <button 
+            onClick={toggleVoiceTutor}
+            className={`text-[10px] font-sans uppercase tracking-widest px-6 py-2.5 transition-all active:scale-95 border-[0.5px] ${isVoiceActive ? 'bg-blue-600 text-[#F0F7FF] border-blue-600' : 'bg-transparent text-[#050505] border-[#050505]'}`}
+          >
+            {isVoiceActive ? 'Cerrar Tutor' : 'Activar Tutor'}
+          </button>
           <button className="bg-[#050505] text-[#F0F7FF] text-[10px] font-sans uppercase tracking-widest px-6 py-2.5 hover:bg-[#333] transition-all active:scale-95">Admin</button>
         </div>
       </nav>
 
       <main className="pt-20">
+        {/* Voice Tutor Interface */}
+        {isVoiceActive && (
+          <div className="fixed bottom-10 right-10 z-[100] w-80 bg-white/90 backdrop-blur-xl border-[0.5px] border-[#050505] p-6 shadow-2xl space-y-4">
+            <div className="flex justify-between items-center border-b-[0.5px] border-[#050505]/10 pb-4">
+              <span className="text-[10px] font-sans uppercase tracking-widest text-blue-600 font-bold">Gemini 2.0 Flash Live</span>
+              <div className="flex gap-2">
+                <div className={`w-2 h-2 rounded-full ${voiceStatus.includes('Error') ? 'bg-red-500' : 'bg-green-500 animate-pulse'}`}></div>
+              </div>
+            </div>
+            
+            <div className="space-y-4">
+              <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-[#050505]/40">{voiceStatus}</p>
+              {voiceResponse && (
+                <div className="bg-[#F0F7FF] p-4 border-[0.5px] border-[#050505]/5">
+                  <p className="font-serif italic text-sm leading-relaxed text-[#050505]">{voiceResponse}</p>
+                </div>
+              )}
+            </div>
+
+            <button 
+              onClick={startListening}
+              disabled={isListening}
+              className={`w-full py-4 border-[0.5px] border-[#050505] text-[10px] font-sans uppercase tracking-[0.3em] transition-all ${isListening ? 'bg-blue-600 text-white animate-pulse' : 'bg-white text-[#050505] hover:bg-[#050505] hover:text-white'}`}
+            >
+              {isListening ? 'Escuchando...' : 'Hablar con Tutor'}
+            </button>
+          </div>
+        )}
+
         {/* Hero Section */}
         <section className="relative min-h-[60vh] flex flex-col items-center justify-center px-6 overflow-hidden">
           <div className="relative z-10 w-full max-w-4xl text-center space-y-12">
