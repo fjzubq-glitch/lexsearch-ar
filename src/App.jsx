@@ -9,6 +9,17 @@ import DataIngestor from './logic/infra/data_ingestor';
  */
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  
+  // Diagnóstico de Emergencia (Franklin Protocol)
+  useEffect(() => {
+    console.log("--- LexSearch Gold: Diagnostic Boot ---");
+    console.log("Vite Context:", import.meta.env.MODE);
+    console.log("Mount Point: OK");
+    const testKey = import.meta.env.VITE_GOOGLE_AI_1;
+    console.log("Environment Check:", testKey ? "Loaded" : "Missing");
+    console.log("---------------------------------------");
+  }, []);
+
   const [leyes, setLeyes] = useState([]);
   const [filteredLeyes, setFilteredLeyes] = useState([]);
   const [externalResults, setExternalResults] = useState([]);

@@ -7,20 +7,27 @@
 class ApiRotator {
   constructor() {
     this.keys = [
-      import.meta.env.VITE_GOOGLE_AI_KEY_1,
-      import.meta.env.VITE_GOOGLE_AI_KEY_2,
-      import.meta.env.VITE_GOOGLE_AI_KEY_3,
-      import.meta.env.VITE_GOOGLE_AI_KEY_4,
-      import.meta.env.VITE_GOOGLE_AI_KEY_5,
-      import.meta.env.VITE_GOOGLE_AI_KEY_6
-    ].filter(key => key && !key.includes('LLAVE_')); // Filtrar placeholders
+      import.meta.env.VITE_GOOGLE_AI_1,
+      import.meta.env.VITE_GOOGLE_AI_2,
+      import.meta.env.VITE_GOOGLE_AI_3,
+      import.meta.env.VITE_GOOGLE_AI_4,
+      import.meta.env.VITE_GOOGLE_AI_5,
+      import.meta.env.VITE_GOOGLE_AI_6
+    ].filter(key => {
+      return typeof key === 'string' && key.trim() !== '' && !key.includes('LLAVE_');
+    });
 
     this.currentIndex = 0;
     
+    console.log(`[Rotator] Inicializado con ${this.keys.length} llaves válidas.`);
+
     if (this.keys.length === 0) {
-      console.warn("[Rotator] No se detectaron llaves válidas. Usando VITE_GEMINI_API_KEY como fallback.");
+      console.warn("[Rotator] No se detectaron llaves específicas. Buscando fallback...");
       const fallback = import.meta.env.VITE_GEMINI_API_KEY;
-      if (fallback) this.keys.push(fallback);
+      if (fallback && fallback.trim() !== '') {
+        this.keys.push(fallback);
+        console.log("[Rotator] Fallback VITE_GEMINI_API_KEY activado.");
+      }
     }
   }
 
