@@ -1,0 +1,40 @@
+{
+  "podcasts": [
+    {
+      "id": "ADMIN-2026-03-16",
+      "materia": "Administrativo",
+      "fecha": "16/03/2026",
+      "titulo": "Decretos y Actos Administrativos",
+      "topics": ["decretos", "actos", "procedimientos", "vicios"],
+      "url": "https://res.cloudinary.com/lexsearch/video/upload/v1/podcasts/admin_decretos_160326.mp3",
+      "snippet": "Análisis exhaustivo del régimen de decretos reglamentarios y autónomos."
+    },
+    {
+      "id": "ADMIN-2026-03-23",
+      "materia": "Administrativo",
+      "fecha": "23/03/2026",
+      "titulo": "Recursos e Impugnación",
+      "topics": ["recursos", "impugnacion", "reclamo", "jerarquico"],
+      "url": "https://res.cloudinary.com/lexsearch/video/upload/v1/podcasts/admin_recursos_230326.mp3",
+      "snippet": "Procedimientos para la defensa del administrado frente a la administración pública."
+    },
+    {
+      "id": "CONTR-2026-03-18",
+      "materia": "Contratos",
+      "fecha": "18/03/2026",
+      "titulo": "Consentimiento y Autonomía",
+      "topics": ["consentimiento", "oferta", "aceptacion", "voluntad"],
+      "url": "https://res.cloudinary.com/lexsearch/video/upload/v1/podcasts/contr_consentimiento_180326.mp3",
+      "snippet": "Formación progresiva del contrato y la libertad de las partes."
+    },
+    {
+      "id": "CONTR-2026-03-25",
+      "materia": "Contratos",
+      "fecha": "25/03/2026",
+      "titulo": "Objeto y Causa Contractual",
+      "topics": ["objeto", "causa", "licitud", "fin"],
+      "url": "https://res.cloudinary.com/lexsearch/video/upload/v1/podcasts/contr_objeto_250326.mp3",
+      "snippet": "Elementos esenciales y requisitos de validez del objeto y la causa motriz."
+    }
+  ]
+}
