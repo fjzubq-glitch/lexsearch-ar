@@ -131,12 +131,29 @@ const App = () => {
             ))}
 
             {/* External / Vault Results */}
-
+            {externalResults.map((result, idx) => (
+              <div key={result.id} className={`group p-8 border-[0.5px] border-[#2563EB]/20 bg-[#F0F7FF] flex flex-col justify-between md:col-span-2 ${(result.type === 'podcast' || result.type === 'clase_grabada') ? 'lg:row-span-1 bg-white border-[#2563EB]' : ''}`}>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[7px] font-sans uppercase tracking-[0.4em] text-[#2563EB] font-black italic">{result.fuente}</span>
+                    <div className="flex gap-2 items-center">
+                       {result.fecha && <span className="text-[7px] px-2 py-0.5 bg-[#F0F7FF] text-[#2563EB] border-[0.5px] border-[#2563EB]/20">{result.fecha}</span>}
+                       <span className="material-symbols-outlined text-[14px] text-[#2563EB]">
+                         {result.type === 'clase_grabada' ? 'mic' : (result.type === 'podcast' ? 'headphones' : 'description')}
+                       </span>
+                    </div>
+                  </div>
+                  <h3 className="font-serif italic text-2xl leading-tight">{result.titulo}</h3>
+                  <p className="font-sans text-[11px] leading-relaxed opacity-60 italic">{result.snippet}</p>
+                </div>
                 <div className="pt-6 flex gap-4">
-                   {result.type === 'podcast' ? (
-                     <button onClick={() => handlePlayAudio(result.url, result.titulo)} className="bg-[#050505] text-white py-3 px-6 text-[8px] font-sans uppercase tracking-[0.4em] hover:scale-105 transition-all">Reproducir Clase</button>
+                   {(result.type === 'podcast' || result.type === 'clase_grabada') ? (
+                     <button onClick={() => handlePlayAudio(result.url, result.titulo)} className="bg-[#050505] text-white py-3 px-6 text-[8px] font-sans uppercase tracking-[0.5em] hover:scale-105 transition-all flex items-center gap-2">
+                       <span className="material-symbols-outlined text-[10px]">play_arrow</span>
+                       Reproducir {result.type === 'clase_grabada' ? 'Cátedra' : 'Podcast'}
+                     </button>
                    ) : (
-                     <a href={result.url} target="_blank" className="border-[0.5px] border-[#2563EB] text-[#2563EB] py-3 px-6 text-[8px] font-sans uppercase tracking-[0.4em] hover:bg-[#2563EB] hover:text-white transition-all">Extraer Tx</a>
+                     <a href={result.url} target="_blank" className="border-[0.5px] border-[#2563EB] text-[#2563EB] py-3 px-6 text-[8px] font-sans uppercase tracking-[0.5em] hover:bg-[#2563EB] hover:text-white transition-all">Extraer Documento</a>
                    )}
                 </div>
               </div>

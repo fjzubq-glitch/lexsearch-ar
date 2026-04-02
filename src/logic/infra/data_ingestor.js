@@ -42,16 +42,7 @@ class DataIngestor {
       p.titulo.toLowerCase().includes(q) || 
       p.materia.toLowerCase().includes(q) ||
       p.topics.some(t => t.toLowerCase().includes(q))
-    ).map(p => ({
-      id: p.id,
-      titulo: `Podcast: ${p.titulo} (${p.fecha})`,
-      fuente: `Bóveda Académica - ${p.materia}`,
-      type: 'podcast',
-      snippet: p.snippet,
-      url: p.url,
-      materia: p.materia,
-      fecha: p.fecha
-    }));
+
 
     return matches;
   }

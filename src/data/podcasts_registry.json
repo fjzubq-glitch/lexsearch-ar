@@ -5,6 +5,7 @@
       "materia": "Administrativo",
       "fecha": "16/03/2026",
       "titulo": "Decretos y Actos Administrativos",
+      "type": "podcast",
       "topics": ["decretos", "actos", "procedimientos", "vicios"],
       "url": "https://res.cloudinary.com/lexsearch/video/upload/v1/podcasts/admin_decretos_160326.mp3",
       "snippet": "Análisis exhaustivo del régimen de decretos reglamentarios y autónomos."
@@ -14,6 +15,7 @@
       "materia": "Administrativo",
       "fecha": "23/03/2026",
       "titulo": "Recursos e Impugnación",
+      "type": "podcast",
       "topics": ["recursos", "impugnacion", "reclamo", "jerarquico"],
       "url": "https://res.cloudinary.com/lexsearch/video/upload/v1/podcasts/admin_recursos_230326.mp3",
       "snippet": "Procedimientos para la defensa del administrado frente a la administración pública."
@@ -23,6 +25,7 @@
       "materia": "Contratos",
       "fecha": "18/03/2026",
       "titulo": "Consentimiento y Autonomía",
+      "type": "podcast",
       "topics": ["consentimiento", "oferta", "aceptacion", "voluntad"],
       "url": "https://res.cloudinary.com/lexsearch/video/upload/v1/podcasts/contr_consentimiento_180326.mp3",
       "snippet": "Formación progresiva del contrato y la libertad de las partes."
@@ -32,9 +35,50 @@
       "materia": "Contratos",
       "fecha": "25/03/2026",
       "titulo": "Objeto y Causa Contractual",
+      "type": "podcast",
       "topics": ["objeto", "causa", "licitud", "fin"],
       "url": "https://res.cloudinary.com/lexsearch/video/upload/v1/podcasts/contr_objeto_250326.mp3",
       "snippet": "Elementos esenciales y requisitos de validez del objeto y la causa motriz."
+    },
+    {
+      "id": "CLASS-ADMIN-2026-03-30",
+      "materia": "Administrativo",
+      "fecha": "30/03/2026",
+      "titulo": "Clase Magistral: Control Judicial",
+      "type": "clase_grabada",
+      "topics": ["control", "judicial", "revision", "alcances"],
+      "url": "https://res.cloudinary.com/lexsearch/video/upload/v1/classes/admin_control_300326.mp3",
+      "snippet": "Grabación original de la cátedra sobre el control judicial de la administración."
+    },
+    {
+      "id": "CLASS-ADMIN-2026-04-06",
+      "materia": "Administrativo",
+      "fecha": "06/04/2026",
+      "titulo": "Clase Magistral: Responsabilidad Estatal",
+      "type": "clase_grabada",
+      "topics": ["responsabilidad", "estado", "daños", "indemnizacion"],
+      "url": "https://res.cloudinary.com/lexsearch/video/upload/v1/classes/admin_resp_060426.mp3",
+      "snippet": "Grabación original sobre la ley 26.944 de responsabilidad del Estado."
+    },
+    {
+      "id": "CLASS-CONTR-2026-04-01",
+      "materia": "Contratos",
+      "fecha": "01/04/2026",
+      "titulo": "Clase Magistral: Contratos de Consumo",
+      "type": "clase_grabada",
+      "topics": ["consumo", "proteccion", "clausulas", "abusivas"],
+      "url": "https://res.cloudinary.com/lexsearch/video/upload/v1/classes/contr_consumo_010426.mp3",
+      "snippet": "Grabación original sobre el orden público de protección en el contrato de consumo."
+    },
+    {
+      "id": "CLASS-CONTR-2026-04-08",
+      "materia": "Contratos",
+      "fecha": "04/08/2026",
+      "titulo": "Clase Magistral: Contratos Bancarios",
+      "type": "clase_grabada",
+      "topics": ["bancarios", "entidades", "servicios", "operaciones"],
+      "url": "https://res.cloudinary.com/lexsearch/video/upload/v1/classes/contr_bancarios_080426.mp3",
+      "snippet": "Grabación original sobre las operaciones bancarias y el rol de las entidades financieras."
     }
   ]
 }
