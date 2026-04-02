@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LexSearch Admin | The Sovereign Archive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary": "#bfcdff",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary-container": "#c8b37d",
+                        "on-primary-fixed": "#241a00",
+                        "primary": "#f2ca50",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#574500",
+                        "error-container": "#93000a",
+                        "on-tertiary-container": "#254188",
+                        "on-primary": "#3c2f00",
+                        "tertiary-fixed-dim": "#b4c5ff",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-container-high": "#2a2a2a",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#082b72",
+                        "primary-container": "#d4af37",
+                        "outline-variant": "#4d4635",
+                        "background": "#131313",
+                        "on-secondary-fixed-variant": "#544519",
+                        "surface-container": "#201f1f",
+                        "outline": "#99907c",
+                        "tertiary-container": "#97b0ff",
+                        "surface": "#131313",
+                        "secondary-container": "#544519",
+                        "on-primary-container": "#554300",
+                        "surface-container-lowest": "#0e0e0e",
+                        "tertiary-fixed": "#dbe1ff",
+                        "on-tertiary-fixed": "#00174b",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-fixed": "#ffe088",
+                        "secondary": "#dac58d",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "on-surface-variant": "#d0c5af",
+                        "secondary-fixed": "#f7e1a6",
+                        "surface-dim": "#131313",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary-fixed-variant": "#27438a",
+                        "on-background": "#e5e2e1",
+                        "on-secondary": "#3c2f05",
+                        "primary-fixed-dim": "#e9c349",
+                        "surface-variant": "#353534",
+                        "inverse-on-surface": "#313030",
+                        "inverse-primary": "#735c00",
+                        "secondary-fixed-dim": "#dac58d",
+                        "surface-tint": "#e9c349"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(53, 53, 52, 0.4);
+            backdrop-filter: blur(24px);
+            border: 0.5px solid rgba(233, 195, 73, 0.2);
+        }
+        .gold-glow:hover {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+        body {
+            background-color: #0e0e0e;
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-12 h-20 bg-[#0e0e0e] dark:bg-[#0e0e0e]">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-serif font-bold tracking-tighter text-[#f2ca50] font-headline">LexSearch</span>
+<div class="hidden md:flex gap-8">
+<a class="text-white/60 font-sans font-label uppercase tracking-widest text-xs hover:text-[#f2ca50] transition-colors duration-300" href="#">Mis Clases</a>
+<a class="text-white/60 font-sans font-label uppercase tracking-widest text-xs hover:text-[#f2ca50] transition-colors duration-300" href="#">Podcast</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<input class="bg-surface-container-low border-b-[0.5px] border-outline/30 focus:border-primary px-4 py-1 text-sm font-body outline-none transition-all w-48 focus:w-64" placeholder="Search archive..." type="text"/>
+</div>
+<div class="flex items-center gap-3 border-l-[0.5px] border-outline-variant/30 pl-6">
+<span class="text-[#f2ca50] font-label uppercase tracking-widest text-xs border-b-[0.5px] border-[#f2ca50] pb-1">Admin</span>
+<img alt="User profile for fjz.ubq@gmail.com" class="w-8 h-8 rounded-full border-[0.5px] border-primary/40 p-0.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBok4yamqY15Cj_-mkiKjqDF3ZfQqH3llocCjcIKI03Kg9c-vXWTTVZanEfLwqWrL1z6s1UVgPwB93AHsEL-Ppt_-_SqYWj_ZtWWMlz3_x6MjotIXZS7ZWMNUPYR2t6v8C-301v45HTpioUENDx8qnReiVoBgW-0Wp8NKaUsgvHFdD6cAvjwnajK2fR_P3o9zGLuLrB1x_tgRjpUZJfehQ2zine4w_gKzm23kNvM9RK8uVkqV0wc-PfOzyBcB-QqkH4yQXTL0WOOA"/>
+</div>
+</div>
+</nav>
+<div class="flex pt-20">
+<!-- SideNavBar -->
+<aside class="fixed left-0 w-64 border-r-0 bg-[#131313] flex flex-col h-[calc(100vh-5rem)] py-8 z-40">
+<div class="px-6 mb-10">
+<h2 class="text-lg font-serif text-[#f2ca50] font-headline">The Sovereign Archive</h2>
+<p class="text-[10px] text-white/40 font-label tracking-[0.2em] uppercase">fjz.ubq@gmail.com</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-4 px-6 py-3 text-white/40 hover:bg-[#1c1b1b] hover:text-white transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined" data-icon="book_2">book_2</span>
+<span class="font-serif text-sm tracking-tight">Archive</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-white/40 hover:bg-[#1c1b1b] hover:text-white transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+<span class="font-serif text-sm tracking-tight">Case Law</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-white/40 hover:bg-[#1c1b1b] hover:text-white transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-serif text-sm tracking-tight">Legislation</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-white/40 hover:bg-[#1c1b1b] hover:text-white transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span class="font-serif text-sm tracking-tight">Class Modules</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 bg-[#353534] text-[#f2ca50] border-l-2 border-[#f2ca50] transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="font-serif text-sm tracking-tight">Admin Panel</span>
+</a>
+</nav>
+<div class="px-6 mb-6">
+<button class="w-full bg-primary-container text-on-primary py-3 font-label uppercase tracking-[0.2em] text-[10px] gold-glow transition-all duration-300">
+                    New Search
+                </button>
+</div>
+<div class="border-t-[0.5px] border-outline-variant/20 pt-6">
+<a class="flex items-center gap-4 px-6 py-2 text-white/40 hover:text-white transition-colors text-xs font-label uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="settings">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-4 px-6 py-2 text-white/40 hover:text-white transition-colors text-xs font-label uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help_outline">help_outline</span>
+                    Support
+                </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 p-12 bg-surface-container-lowest min-h-screen">
+<!-- Admin Header -->
+<header class="mb-16 flex justify-between items-end">
+<div class="max-w-2xl">
+<h1 class="text-6xl font-headline italic tracking-tighter text-on-surface leading-tight">Executive Dashboard</h1>
+<p class="mt-4 text-outline font-body text-lg leading-relaxed">System monitoring and engagement metrics for <span class="text-primary-fixed-dim">fjz.ubq@gmail.com</span>. Strategic oversight of the Sovereign Archive assets.</p>
+</div>
+<div class="glass-card p-6 flex flex-col items-end">
+<span class="text-[10px] font-label uppercase tracking-[0.3em] text-primary/60 mb-2">Security Authorization</span>
+<div class="flex gap-2">
+<div class="w-10 h-12 border-[0.5px] border-primary/40 flex items-center justify-center text-primary font-headline text-xl">2</div>
+<div class="w-10 h-12 border-[0.5px] border-primary/40 flex items-center justify-center text-primary font-headline text-xl">0</div>
+<div class="w-10 h-12 border-[0.5px] border-primary/40 flex items-center justify-center text-primary font-headline text-xl">2</div>
+<div class="w-10 h-12 border-[0.5px] border-primary/40 flex items-center justify-center text-primary font-headline text-xl">6</div>
+</div>
+</div>
+</header>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-12 gap-8 mb-12">
+<!-- Large Stats Card (Bento Style) -->
+<div class="col-span-8 glass-card p-10 relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-12">
+<div>
+<h3 class="text-[10px] font-label uppercase tracking-[0.4em] text-primary mb-1">Download Trajectory</h3>
+<p class="text-4xl font-headline italic tracking-tighter text-on-surface">Annual Growth Cycle</p>
+</div>
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="trending_up">trending_up</span>
+</div>
+<div class="flex items-end gap-1 h-48 mb-6">
+<div class="flex-1 bg-primary/10 h-[30%] hover:bg-primary/40 transition-colors"></div>
+<div class="flex-1 bg-primary/10 h-[45%] hover:bg-primary/40 transition-colors"></div>
+<div class="flex-1 bg-primary/10 h-[40%] hover:bg-primary/40 transition-colors"></div>
+<div class="flex-1 bg-primary/10 h-[65%] hover:bg-primary/40 transition-colors"></div>
+<div class="flex-1 bg-primary/10 h-[55%] hover:bg-primary/40 transition-colors"></div>
+<div class="flex-1 bg-primary/10 h-[85%] hover:bg-primary/40 transition-colors"></div>
+<div class="flex-1 bg-primary-container h-[95%]"></div>
+<div class="flex-1 bg-primary/10 h-[75%] hover:bg-primary/40 transition-colors"></div>
+</div>
+<div class="flex justify-between text-[10px] font-label uppercase tracking-widest text-outline">
+<span>Q1 2024</span>
+<span>Q2 2024</span>
+<span>Q3 2024</span>
+<span>Q4 2024 (Projected)</span>
+</div>
+</div>
+<!-- Aesthetic Detail -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-[80px]"></div>
+</div>
+<!-- Secondary Stats Stack -->
+<div class="col-span-4 flex flex-col gap-8">
+<div class="flex-1 bg-surface-container-low p-8 border-l-[0.5px] border-primary/20">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="group">group</span>
+<h4 class="text-[10px] font-label uppercase tracking-widest text-outline mb-1">Active Scholars</h4>
+<div class="text-5xl font-headline tracking-tighter text-on-surface">1,284</div>
+<p class="text-xs text-primary mt-2 font-body">+12% from previous month</p>
+</div>
+<div class="flex-1 bg-surface-container-low p-8 border-l-[0.5px] border-primary/20">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="file_download">file_download</span>
+<h4 class="text-[10px] font-label uppercase tracking-widest text-outline mb-1">Briefs Accessed</h4>
+<div class="text-5xl font-headline tracking-tighter text-on-surface">42.9k</div>
+<p class="text-xs text-primary mt-2 font-body">New high-water mark reached</p>
+</div>
+</div>
+</div>
+<!-- Detailed Analysis Section -->
+<div class="grid grid-cols-12 gap-8">
+<!-- User Engagement Table -->
+<div class="col-span-7 bg-[#1c1b1b] p-10">
+<h3 class="text-sm font-label uppercase tracking-[0.3em] text-primary/80 mb-8 border-b-[0.5px] border-outline-variant/30 pb-4">Recent Institutional Access</h3>
+<div class="space-y-6">
+<div class="flex justify-between items-center group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-surface-container-highest flex items-center justify-center font-headline italic text-primary">SC</div>
+<div>
+<p class="font-serif text-on-surface">Sullivan &amp; Cromwell LLP</p>
+<p class="text-[10px] font-label text-outline uppercase tracking-widest">New York, NY</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-body text-primary-fixed-dim">124 Requests</p>
+<p class="text-[10px] font-label text-outline uppercase tracking-widest">Active Now</p>
+</div>
+</div>
+<div class="flex justify-between items-center group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-surface-container-highest flex items-center justify-center font-headline italic text-primary">DP</div>
+<div>
+<p class="font-serif text-on-surface">Davis Polk &amp; Wardwell</p>
+<p class="text-[10px] font-label text-outline uppercase tracking-widest">London, UK</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-body text-primary-fixed-dim">89 Requests</p>
+<p class="text-[10px] font-label text-outline uppercase tracking-widest">2h ago</p>
+</div>
+</div>
+<div class="flex justify-between items-center group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-surface-container-highest flex items-center justify-center font-headline italic text-primary">LW</div>
+<div>
+<p class="font-serif text-on-surface">Latham &amp; Watkins</p>
+<p class="text-[10px] font-label text-outline uppercase tracking-widest">Washington, D.C.</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-body text-primary-fixed-dim">256 Requests</p>
+<p class="text-[10px] font-label text-outline uppercase tracking-widest">5h ago</p>
+</div>
+</div>
+</div>
+</div>
+<!-- System Health Card -->
+<div class="col-span-5 glass-card p-10 flex flex-col justify-between">
+<div>
+<h3 class="text-sm font-label uppercase tracking-[0.3em] text-primary/80 mb-6">Archive Integrity</h3>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between text-xs font-label uppercase tracking-widest text-outline mb-2">
+<span>Encryption Strength</span>
+<span>99.9%</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full">
+<div class="h-full bg-primary w-[99.9%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-label uppercase tracking-widest text-outline mb-2">
+<span>Server Latency (Global)</span>
+<span>14ms</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full">
+<div class="h-full bg-primary w-[15%]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t-[0.5px] border-outline-variant/30 mt-8">
+<div class="flex items-center gap-3 text-error">
+<span class="material-symbols-outlined text-sm" data-icon="verified_user">verified_user</span>
+<span class="text-[10px] font-label uppercase tracking-[0.2em]">Secure Node: Manhattan East</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Decorative Element -->
+<section class="mt-16 border-t-[0.5px] border-outline-variant/20 pt-16 grid grid-cols-3 gap-12">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover opacity-40 grayscale hover:grayscale-0 transition-all duration-700" data-alt="Close-up of golden justice scales in a dimly lit, prestigious law library with blurred book spines in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjiws71FZH7ym_vl-S-BDbTMsjxWSzNDcX-Vrl7J4lJZtoVoMxpakQBz1fH86VODxdOsGUmlP2Y6ioW7H-8LynioDSQiFcPFS477DCtimBINqaPwVKz3B4dORmiKFscWl8EDX__NnokoOmqzrwZqXmkVbvqkBXuJq1rJ1-VQhVnlSBpc8WCrboiPja-nGMEnoPy-FGB7-syZmiiTdU-ul-HiSV0xGn-ioiGlYkRxAMDSnsPKP-RULbpB-jU7v_TMpf0PLRd-IaMA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent"></div>
+<p class="absolute bottom-4 left-4 text-[10px] font-label uppercase tracking-widest text-primary">Civil Litigation</p>
+</div>
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover opacity-40 grayscale hover:grayscale-0 transition-all duration-700" data-alt="Dramatic high-contrast shot of an old leather-bound legal book with fine dust particles caught in a single beam of light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4aEvE8XU8WTf4wyA_V8ECzFQJU-BwXtqIn_gwbkq0TqCp74VziqI3iEnVMoIy6Ip5zehCOtEDBF0sYhGBp-DdHV4-I8LVjw-zv-LkrDAAtYmo60VALSn9MVyOJVUWAmjgKQgh6mqA8SylUc4yFxYgbAwihqVLszvo5QcmYQMiE68odFq87YwA4ORCz0gcc501IYUiJryYXGSx6KnHZNYZeMcr6nMVWrjs5SeSCiZqCtOeyJ16k3QtGkBQlKTWjRzecpnSheiw0A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent"></div>
+<p class="absolute bottom-4 left-4 text-[10px] font-label uppercase tracking-widest text-primary">Constitutional Law</p>
+</div>
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover opacity-40 grayscale hover:grayscale-0 transition-all duration-700" data-alt="Top-down minimalist view of a high-end fountain pen resting on a crisp legal document with golden accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlnCk8eTwMEMTADcsGyF4ic80z1nFFeDPoEcwmjEmf9Lk2IGPLq-Uaw7EN4DFzO6SyCNf8dvF7yyo_CFcv6nMS0JgopCaFbRoObMgRwXRsBMyjp8QjMyJzCl1mVIjaSAcsbIHLpTGNCsiEcGpH09Zv_RuZNycozhL7ikBF2F69MJIEridaOLVNqtrgJfGKmlwerghNsPdm8-unCLlb-DNFKGL6d0Cm8R6Sjxopr0Ip6mmzMkP6zBiYt3f58eb_MGoz8IzMxQnFZg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent"></div>
+<p class="absolute bottom-4 left-4 text-[10px] font-label uppercase tracking-widest text-primary">Corporate Governance</p>
+</div>
+</section>
+</main>
+</div>
+<!-- Mobile Navigation Suppressed per Rule: Contextual suppression on Admin Screens -->
+<!-- FAB Suppressed per Rule: Admin dashboard context -->
+</body></html>

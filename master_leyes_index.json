@@ -1,0 +1,16 @@
+{
+  "leyes": [
+    { "numero": "19549", "titulo": "Ley de Procedimientos Administrativos", "id_infoleg": "1046", "materia": "Administrativo" },
+    { "numero": "26994", "titulo": "Código Civil y Comercial de la Nación", "id_infoleg": "235978", "materia": "Civil" },
+    { "numero": "11179", "titulo": "Código Penal de la Nación Argentina", "id_infoleg": "16546", "materia": "Penal" },
+    { "numero": "20744", "titulo": "Ley de Contrato de Trabajo (L.C.T.)", "id_infoleg": "25552", "materia": "Laboral" },
+    { "numero": "24240", "titulo": "Ley de Defensa al Consumidor", "id_infoleg": "638", "materia": "Consumidor" },
+    { "numero": "19550", "titulo": "Ley de Sociedades Comerciales (L.G.S.)", "id_infoleg": "1051", "materia": "Comercial" },
+    { "numero": "17711", "titulo": "Ley de Reforma al Código Civil (Histórica)", "id_infoleg": "11119", "materia": "Civil" },
+    { "numero": "24522", "titulo": "Ley de Concursos y Quiebras (L.C.Q.)", "id_infoleg": "25372", "materia": "Comercial" },
+    { "numero": "24557", "titulo": "Ley de Riesgos del Trabajo (L.R.T.)", "id_infoleg": "27971", "materia": "Laboral" },
+    { "numero": "16986", "titulo": "Ley de Acción de Amparo", "id_infoleg": "16788", "materia": "Constitucional" },
+    { "numero": "25326", "titulo": "Ley de Protección de Datos Personales", "id_infoleg": "66078", "materia": "Privacidad" },
+    { "numero": "27442", "titulo": "Ley de Defensa de la Competencia", "id_infoleg": "310313", "materia": "Comercial" }
+  ]
+}

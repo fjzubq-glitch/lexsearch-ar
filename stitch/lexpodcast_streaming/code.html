@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LexSearch | LexPodcast</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary": "#bfcdff",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary-container": "#c8b37d",
+                        "on-primary-fixed": "#241a00",
+                        "primary": "#f2ca50",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#574500",
+                        "error-container": "#93000a",
+                        "on-tertiary-container": "#254188",
+                        "on-primary": "#3c2f00",
+                        "tertiary-fixed-dim": "#b4c5ff",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-container-high": "#2a2a2a",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#082b72",
+                        "primary-container": "#d4af37",
+                        "outline-variant": "#4d4635",
+                        "background": "#131313",
+                        "on-secondary-fixed-variant": "#544519",
+                        "surface-container": "#201f1f",
+                        "outline": "#99907c",
+                        "tertiary-container": "#97b0ff",
+                        "surface": "#131313",
+                        "secondary-container": "#544519",
+                        "on-primary-container": "#554300",
+                        "surface-container-lowest": "#0e0e0e",
+                        "tertiary-fixed": "#dbe1ff",
+                        "on-tertiary-fixed": "#00174b",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-fixed": "#ffe088",
+                        "secondary": "#dac58d",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "on-surface-variant": "#d0c5af",
+                        "secondary-fixed": "#f7e1a6",
+                        "surface-dim": "#131313",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary-fixed-variant": "#27438a",
+                        "on-background": "#e5e2e1",
+                        "on-secondary": "#3c2f05",
+                        "primary-fixed-dim": "#e9c349",
+                        "surface-variant": "#353534",
+                        "inverse-on-surface": "#313030",
+                        "inverse-primary": "#735c00",
+                        "secondary-fixed-dim": "#dac58d",
+                        "surface-tint": "#e9c349"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .gold-glow:hover {
+            box-shadow: 0 0 15px rgba(242, 202, 80, 0.4);
+        }
+        .waveform-bar {
+            width: 3px;
+            background-color: #f2ca50;
+            opacity: 0.3;
+        }
+        .waveform-bar.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-12 h-20 bg-[#0e0e0e]">
+<div class="text-2xl font-headline font-bold tracking-tighter text-primary">LexSearch</div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="text-white/60 font-label uppercase tracking-widest text-xs hover:text-primary transition-colors duration-300" href="#">Mis Clases</a>
+<a class="text-primary border-b-[0.5px] border-primary pb-1 font-label uppercase tracking-widest text-xs transition-colors duration-300" href="#">Podcast</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="text-primary font-label uppercase tracking-widest text-xs hover:opacity-80 active:scale-95 transition-all">Admin</button>
+<div class="w-10 h-10 border-[0.5px] border-outline-variant/30 flex items-center justify-center">
+<img alt="User profile for fjz.ubq@gmail.com" class="w-full h-full object-cover" data-alt="close-up portrait of a professional lawyer in a dark suit against a minimalist charcoal background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6_estfTJbL7cgbjmekqIBG4dcj0c_rUm-r1Dj3GBVn10trwM48EWoAe_BLmpQtBNzA7Z0cYlzC_H86lTTDrK4EcO2dUVBrVR3y-QqKX2UaHtIOooajKpw4uFpPa7pcBlVcZv68fVZYbUyTXbyqRrTKGC6kecX_n0uwNTq4lybmxkr9tMzzAi3tqUhaTGylbwTkoKMiMD_eZ2yK7UQGOaVOaqkoRQXZJ9-njscBl0ee5okCrJgl383_75t8qjdOKN_aJsUuf0PpA"/>
+</div>
+</div>
+</nav>
+<div class="flex pt-20">
+<!-- Side Navigation Bar -->
+<aside class="hidden md:flex flex-col h-[calc(100vh-5rem)] py-8 sticky top-20 left-0 w-64 bg-surface-dim border-r-[0.5px] border-outline-variant/10">
+<div class="px-8 mb-12">
+<h2 class="text-lg font-headline text-primary">The Sovereign Archive</h2>
+<p class="text-[10px] text-white/40 font-label uppercase tracking-widest mt-1">fjz.ubq@gmail.com</p>
+</div>
+<div class="flex-grow space-y-1">
+<a class="flex items-center px-8 py-3 text-white/40 hover:bg-surface-container-low hover:text-white transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined mr-4">book_2</span>
+<span class="font-headline italic text-sm">Archive</span>
+</a>
+<a class="flex items-center px-8 py-3 text-white/40 hover:bg-surface-container-low hover:text-white transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined mr-4">gavel</span>
+<span class="font-headline italic text-sm">Case Law</span>
+</a>
+<a class="flex items-center px-8 py-3 text-white/40 hover:bg-surface-container-low hover:text-white transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined mr-4">description</span>
+<span class="font-headline italic text-sm">Legislation</span>
+</a>
+<a class="flex items-center px-8 py-3 bg-surface-container-highest text-primary border-l-2 border-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-4">school</span>
+<span class="font-headline italic text-sm">Class Modules</span>
+</a>
+<a class="flex items-center px-8 py-3 text-white/40 hover:bg-surface-container-low hover:text-white transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined mr-4">admin_panel_settings</span>
+<span class="font-headline italic text-sm">Admin Panel</span>
+</a>
+</div>
+<div class="px-8 mt-auto pt-8 border-t-[0.5px] border-outline-variant/10">
+<button class="w-full py-3 bg-primary-container text-on-primary font-label uppercase tracking-widest text-[10px] gold-glow transition-all duration-300 mb-6">New Search</button>
+<div class="space-y-2">
+<a class="flex items-center text-white/40 hover:text-primary transition-colors text-xs" href="#">
+<span class="material-symbols-outlined text-sm mr-2">settings</span> Settings
+                    </a>
+<a class="flex items-center text-white/40 hover:text-primary transition-colors text-xs" href="#">
+<span class="material-symbols-outlined text-sm mr-2">help_outline</span> Support
+                    </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-grow p-12 bg-surface-container-lowest min-h-screen">
+<!-- Header Section -->
+<header class="mb-20 max-w-5xl">
+<span class="font-label uppercase tracking-[0.4em] text-[10px] text-primary mb-4 block">Streaming Experience</span>
+<h1 class="text-7xl font-headline font-bold italic tracking-tighter text-on-surface mb-6">LexPodcast</h1>
+<p class="text-on-surface-variant font-body text-lg leading-relaxed max-w-2xl">
+                    High-fidelity legal discourse. Listen to the architects of modern law as they deconstruct landmark cases and the future of sovereign jurisprudence.
+                </p>
+</header>
+<!-- Featured Asymmetric Grid -->
+<div class="grid grid-cols-12 gap-8 mb-24">
+<!-- Main Featured Player (Asymmetric Large) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-low border-[0.5px] border-outline-variant/20 p-10 flex flex-col justify-between h-[500px] relative overflow-hidden group">
+<div class="absolute inset-0 opacity-20 transition-transform duration-700 group-hover:scale-105">
+<img class="w-full h-full object-cover" data-alt="dark atmospheric library with tall shelves filled with old law books and a single spotlight on an open book" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVYmshWcUVxdrO3dxZVirMXRR7fk3enhmJzj1bLtUcJEM4dk_74_uXTfAgWDR4sQhn_nfCHNqtbSMDBLHMeVJ9JLZD8pj8ilql5b2sn8WLvAHGrGhw3kLZ5uVsRWWLYv7eEmBjgj_1ru07hBP1mQ_u29PoVNsDpMQsyZtkZtrAexksExvUi0ua_F7lq6UYTVVqlEOOeHAUsDtJh4Jvk8FXQQJ5HXA34wejmh3F1xGXxFT592CIRZkxqjmF4WZHb3HrIcFKgsaUhQ"/>
+</div>
+<div class="relative z-10">
+<div class="flex items-center space-x-3 mb-6">
+<span class="bg-primary text-on-primary px-3 py-1 text-[10px] font-label uppercase tracking-widest">Featured</span>
+<span class="text-white/40 text-[10px] font-label uppercase tracking-widest">Vol. 14 / EP. 03</span>
+</div>
+<h3 class="text-4xl font-headline italic tracking-tight text-white max-w-xl">The Sovereignty of Digital Assets in International Arbitration</h3>
+<p class="text-white/60 mt-4 font-body max-w-md">Guest: Dr. Julian Vane, QC. A deep dive into the jurisdictional challenges of decentralized finance.</p>
+</div>
+<div class="relative z-10 mt-12">
+<!-- Waveform Visualization -->
+<div class="flex items-end space-x-1 h-12 mb-8">
+<div class="waveform-bar h-4"></div>
+<div class="waveform-bar h-8"></div>
+<div class="waveform-bar h-6"></div>
+<div class="waveform-bar h-10 active"></div>
+<div class="waveform-bar h-12 active"></div>
+<div class="waveform-bar h-7 active"></div>
+<div class="waveform-bar h-9 active"></div>
+<div class="waveform-bar h-11 active"></div>
+<div class="waveform-bar h-5"></div>
+<div class="waveform-bar h-8"></div>
+<div class="waveform-bar h-10"></div>
+<div class="waveform-bar h-6"></div>
+<div class="waveform-bar h-9"></div>
+<div class="waveform-bar h-12"></div>
+<div class="waveform-bar h-4"></div>
+<div class="waveform-bar h-7"></div>
+<div class="waveform-bar h-10"></div>
+<div class="waveform-bar h-8"></div>
+<div class="waveform-bar h-6"></div>
+<div class="waveform-bar h-11"></div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-8">
+<button class="text-primary hover:opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-4xl">play_circle</span>
+</button>
+<div class="hidden sm:block">
+<span class="text-white text-xs font-label">00:42 / 58:12</span>
+</div>
+</div>
+<button class="px-8 py-3 border-[0.5px] border-primary text-primary font-label uppercase tracking-widest text-[10px] gold-glow transition-all duration-300">
+                                Download
+                            </button>
+</div>
+</div>
+</div>
+<!-- Secondary Featured -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-8">
+<div class="flex-grow bg-surface-container-high p-8 border-[0.5px] border-outline-variant/20 flex flex-col justify-between">
+<div>
+<span class="text-primary text-[10px] font-label uppercase tracking-widest mb-4 block">Up Next</span>
+<h4 class="text-xl font-headline italic text-on-surface">Maritime Law &amp; Private Space Exploration</h4>
+</div>
+<div class="mt-8 flex items-center justify-between">
+<span class="text-white/40 text-[10px] font-label">42 MIN</span>
+<button class="text-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">playlist_add</span>
+</button>
+</div>
+</div>
+<div class="flex-grow bg-surface-container border-[0.5px] border-outline-variant/10 p-8 flex flex-col justify-between">
+<div>
+<span class="text-white/30 text-[10px] font-label uppercase tracking-widest mb-4 block">Recommended</span>
+<h4 class="text-xl font-headline italic text-white/80">Ethics of AI in Sentencing Procedures</h4>
+</div>
+<div class="mt-8 flex items-center justify-between">
+<span class="text-white/40 text-[10px] font-label">28 MIN</span>
+<button class="text-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Podcast Archive List -->
+<section class="max-w-5xl">
+<div class="flex items-end justify-between border-b-[0.5px] border-outline-variant/30 pb-4 mb-12">
+<h2 class="text-2xl font-headline italic text-on-surface">Recent Episodes</h2>
+<a class="text-[10px] font-label uppercase tracking-widest text-primary hover:opacity-70 transition-opacity" href="#">View All Archives</a>
+</div>
+<div class="space-y-12">
+<!-- Episode Entry -->
+<div class="group flex flex-col md:flex-row items-start md:items-center justify-between gap-6 py-4">
+<div class="flex-grow">
+<span class="text-[10px] font-label uppercase tracking-widest text-white/30 mb-2 block">12 Oct, 2023</span>
+<h3 class="text-2xl font-headline italic text-white group-hover:text-primary transition-colors duration-300">The Precedent of Climate Litigation in EU Courts</h3>
+<p class="text-white/40 text-sm mt-2 font-body max-w-2xl">Exploring the first waves of corporate accountability for carbon emissions under European civil codes.</p>
+</div>
+<div class="flex items-center space-x-12 shrink-0">
+<div class="text-right hidden sm:block">
+<span class="block text-white/60 text-xs font-label">34:10</span>
+<span class="block text-white/30 text-[10px] font-label uppercase tracking-widest mt-1">S03 E08</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="w-10 h-10 flex items-center justify-center border-[0.5px] border-outline-variant/30 text-white/60 hover:text-primary hover:border-primary transition-all gold-glow">
+<span class="material-symbols-outlined text-xl">play_arrow</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center border-[0.5px] border-outline-variant/30 text-white/60 hover:text-primary hover:border-primary transition-all gold-glow">
+<span class="material-symbols-outlined text-xl">download</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Episode Entry -->
+<div class="group flex flex-col md:flex-row items-start md:items-center justify-between gap-6 py-4">
+<div class="flex-grow">
+<span class="text-[10px] font-label uppercase tracking-widest text-white/30 mb-2 block">05 Oct, 2023</span>
+<h3 class="text-2xl font-headline italic text-white group-hover:text-primary transition-colors duration-300">Intellectual Property in the Age of Generative Adversarial Networks</h3>
+<p class="text-white/40 text-sm mt-2 font-body max-w-2xl">Who owns the output of an autonomous system? We discuss the upcoming Supreme Court deliberations.</p>
+</div>
+<div class="flex items-center space-x-12 shrink-0">
+<div class="text-right hidden sm:block">
+<span class="block text-white/60 text-xs font-label">52:45</span>
+<span class="block text-white/30 text-[10px] font-label uppercase tracking-widest mt-1">S03 E07</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="w-10 h-10 flex items-center justify-center border-[0.5px] border-outline-variant/30 text-white/60 hover:text-primary hover:border-primary transition-all gold-glow">
+<span class="material-symbols-outlined text-xl">play_arrow</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center border-[0.5px] border-outline-variant/30 text-white/60 hover:text-primary hover:border-primary transition-all gold-glow">
+<span class="material-symbols-outlined text-xl">download</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Episode Entry -->
+<div class="group flex flex-col md:flex-row items-start md:items-center justify-between gap-6 py-4">
+<div class="flex-grow">
+<span class="text-[10px] font-label uppercase tracking-widest text-white/30 mb-2 block">28 Sep, 2023</span>
+<h3 class="text-2xl font-headline italic text-white group-hover:text-primary transition-colors duration-300">Tax Haven Reformation: The New Global Minimum</h3>
+<p class="text-white/40 text-sm mt-2 font-body max-w-2xl">A technical analysis of the G20's strategy to harmonize corporate tax rates across jurisdictions.</p>
+</div>
+<div class="flex items-center space-x-12 shrink-0">
+<div class="text-right hidden sm:block">
+<span class="block text-white/60 text-xs font-label">41:20</span>
+<span class="block text-white/30 text-[10px] font-label uppercase tracking-widest mt-1">S03 E06</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="w-10 h-10 flex items-center justify-center border-[0.5px] border-outline-variant/30 text-white/60 hover:text-primary hover:border-primary transition-all gold-glow">
+<span class="material-symbols-outlined text-xl">play_arrow</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center border-[0.5px] border-outline-variant/30 text-white/60 hover:text-primary hover:border-primary transition-all gold-glow">
+<span class="material-symbols-outlined text-xl">download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Floating Audio Mini-Player (Contextual) -->
+<div class="fixed bottom-8 right-8 w-80 bg-surface-variant backdrop-blur-xl bg-opacity-80 border-[0.5px] border-primary/20 p-6 flex flex-col shadow-2xl z-50">
+<div class="flex items-center space-x-4 mb-4">
+<div class="w-12 h-12 bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+<div class="overflow-hidden">
+<h5 class="text-xs font-headline italic text-white truncate">Digital Assets Sovereignty</h5>
+<p class="text-[10px] font-label uppercase tracking-widest text-primary truncate">Now Playing</p>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-4">
+<button class="text-white/60 hover:text-white transition-colors"><span class="material-symbols-outlined text-lg">skip_previous</span></button>
+<button class="text-primary hover:opacity-80 transition-opacity"><span class="material-symbols-outlined text-2xl">pause_circle</span></button>
+<button class="text-white/60 hover:text-white transition-colors"><span class="material-symbols-outlined text-lg">skip_next</span></button>
+</div>
+<div class="flex-grow mx-4 h-[1px] bg-white/10 relative">
+<div class="absolute top-0 left-0 h-full bg-primary w-1/3"></div>
+</div>
+<button class="text-white/40 hover:text-white"><span class="material-symbols-outlined text-sm">close</span></button>
+</div>
+</div>
+</body></html>

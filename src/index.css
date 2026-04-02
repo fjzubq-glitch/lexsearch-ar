@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background-color: #F0F7FF; /* Azul Azure */
+  color: #050505; /* Negro Obsidian */
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #F0F7FF;
+  color: #050505;
+  font-family: 'Manrope', sans-serif;
+}
+
+#root {
+  width: 100%;
+}
+
+.font-serif {
+  font-family: 'Noto Serif', serif;
+}

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary": "#bfcdff",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary-container": "#c8b37d",
+                        "on-primary-fixed": "#241a00",
+                        "primary": "#f2ca50",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#574500",
+                        "error-container": "#93000a",
+                        "on-tertiary-container": "#254188",
+                        "on-primary": "#3c2f00",
+                        "tertiary-fixed-dim": "#b4c5ff",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-container-high": "#2a2a2a",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#082b72",
+                        "primary-container": "#d4af37",
+                        "outline-variant": "#4d4635",
+                        "background": "#0e0e0e",
+                        "on-secondary-fixed-variant": "#544519",
+                        "surface-container": "#201f1f",
+                        "outline": "#99907c",
+                        "tertiary-container": "#97b0ff",
+                        "surface": "#131313",
+                        "secondary-container": "#544519",
+                        "on-primary-container": "#554300",
+                        "surface-container-lowest": "#0e0e0e",
+                        "tertiary-fixed": "#dbe1ff",
+                        "on-tertiary-fixed": "#00174b",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-fixed": "#ffe088",
+                        "secondary": "#dac58d",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "on-surface-variant": "#d0c5af",
+                        "secondary-fixed": "#f7e1a6",
+                        "surface-dim": "#131313",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary-fixed-variant": "#27438a",
+                        "on-background": "#e5e2e1",
+                        "on-secondary": "#3c2f05",
+                        "primary-fixed-dim": "#e9c349",
+                        "surface-variant": "#353534",
+                        "inverse-on-surface": "#313030",
+                        "inverse-primary": "#735c00",
+                        "secondary-fixed-dim": "#dac58d",
+                        "surface-tint": "#e9c349"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .gold-glow:hover {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            border-color: #f2ca50;
+        }
+        .editorial-input {
+            border-bottom: 0.5px solid rgba(242, 202, 80, 0.3);
+            background: transparent;
+        }
+        .editorial-input:focus {
+            outline: none;
+            border-bottom: 0.5px solid #f2ca50;
+        }
+        .ghost-border {
+            border: 0.5px solid rgba(153, 144, 124, 0.2);
+        }
+        .glass-panel {
+            background: rgba(53, 53, 52, 0.4);
+            backdrop-filter: blur(24px);
+            border: 0.5px solid rgba(233, 195, 73, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body selection:bg-primary-container/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-12 h-20 bg-[#0e0e0e] dark:bg-[#0e0e0e]">
+<div class="flex items-center gap-12">
+<a class="text-2xl font-serif font-bold tracking-tighter text-[#f2ca50]" href="#">LexSearch</a>
+<div class="hidden md:flex gap-8">
+<a class="text-white/60 font-sans font-sans uppercase tracking-widest text-xs hover:text-[#f2ca50] transition-colors duration-300" href="#">Mis Clases</a>
+<a class="text-white/60 font-sans font-sans uppercase tracking-widest text-xs hover:text-[#f2ca50] transition-colors duration-300" href="#">Podcast</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 border-b-[0.5px] border-outline-variant/30">
+<span class="material-symbols-outlined text-sm text-outline mr-2">search</span>
+<input class="bg-transparent border-none text-xs focus:ring-0 w-48 font-label uppercase tracking-tighter" placeholder="Explorar Jurisprudencia..." type="text"/>
+</div>
+<button class="bg-primary-container text-on-primary-fixed text-xs font-label uppercase tracking-widest px-6 py-2.5 gold-glow transition-all active:scale-95">Admin</button>
+<div class="w-8 h-8 bg-surface-container-high overflow-hidden ghost-border">
+<img class="w-full h-full object-cover grayscale opacity-80" data-alt="Close-up portrait of a professional man in a dark suit with soft cinematic lighting against a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD56muJzTeLqUeqRpnuxoTkJsCwLc8HY9zBpapGXcprRDCw_iAv6jtvCIsFurE5u4matY_4xSl4gjvYw5mPZr4YL8QwwRQfE4MwBwdWgNKpSQ61gnXVopq_GsPJ5PB3mMRFpX4ag_45h_YDLKhnhO0nAuD-hknBL_HDBC8gxwKkzVgVvcZRD20H6O-ULHkdEnXfKo0ytNnssxQWXMqrIrxKUmmYQHOIN_v7IZVQgCua7An353QwrS-V6sJbgU9WhS0YlmUND6AWww"/>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[870px] flex flex-col items-center justify-center px-6 overflow-hidden">
+<!-- Background Visual -->
+<div class="absolute inset-0 z-0 opacity-20">
+<img class="w-full h-full object-cover scale-105" data-alt="Atmospheric low angle shot of classical columns in a grand hall with dramatic shadows and golden light streaks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxHTVx4mPYeRIQpxIZF8CXlgspRq9BM_Zvrc8bofVWCEfjq0ErgHnwZzbBfDiuijjGV3SlCu6v7a7h04qV9OzTg4Er2A5J-BhM8n-IBS3qCbbjIgOF2s-aRlLNRQHAHisUWOguz0CbFQXim72MOU5iSiUyWvRJrN8WF95CNo9aQXrUNB7wE5nM4QFiG90dDRcNVQDWydzPBR1kIysnmgDfnQ-L9tJ3I6BvqUlVbH4qsjoqyN-o_T3xpF3m6tNOoFLCTH3p1bYgAA"/>
+<div class="absolute inset-0 bg-gradient-to-b from-surface-container-lowest via-transparent to-surface-container-lowest"></div>
+</div>
+<div class="relative z-10 w-full max-w-4xl text-center space-y-12">
+<h1 class="font-headline italic text-5xl md:text-7xl tracking-tighter text-on-surface leading-tight">
+                    ¿Qué duda jurídica <br/> <span class="text-primary">resolvemos hoy?</span>
+</h1>
+<div class="w-full max-w-2xl mx-auto">
+<div class="relative group">
+<input class="w-full h-16 editorial-input text-xl md:text-2xl font-headline italic placeholder:text-on-surface-variant/30 px-2 transition-all" placeholder="Ej: Alcance del fallo Halabi sobre acciones de clase..." type="text"/>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 text-primary p-2">
+<span class="material-symbols-outlined text-4xl">arrow_forward_ios</span>
+</button>
+</div>
+<div class="mt-6 flex flex-wrap justify-center gap-4 text-[10px] font-label uppercase tracking-[0.2em] text-on-surface-variant/50">
+<span>Búsquedas frecuentes:</span>
+<a class="text-primary hover:underline" href="#">Acción Colectiva</a>
+<a class="text-primary hover:underline" href="#">Responsabilidad del Estado</a>
+<a class="text-primary hover:underline" href="#">Consumidores</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Jurisprudencia Destacada -->
+<section class="px-12 py-24 bg-surface-container-lowest">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-2xl">
+<h2 class="font-headline text-4xl italic tracking-tighter mb-4">The Sovereign Archive</h2>
+<p class="font-body text-on-surface-variant leading-relaxed opacity-70">
+                        Acceso quirúrgico a los precedentes que transformaron el sistema jurídico. Una curaduría de excelencia para la práctica legal de élite.
+                    </p>
+</div>
+<div class="font-label uppercase text-[10px] tracking-[0.3em] text-primary flex items-center gap-2">
+                    Ver todos los archivos <span class="material-symbols-outlined text-sm">trending_flat</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Case: Halabi -->
+<div class="md:col-span-8 group relative aspect-video md:aspect-auto h-[400px] overflow-hidden ghost-border bg-surface-container-low transition-all hover:bg-surface-container">
+<div class="absolute inset-0 opacity-30 grayscale group-hover:scale-110 transition-transform duration-700">
+<img class="w-full h-full object-cover" data-alt="Close-up of old legal manuscripts and a fountain pen on a dark wooden desk with focused warm light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn-XF3KypX1oLFv-VUaMqhLUEcagL-zHnM0ranwRHwUH3II8_bNrB3P02ChfuiFTbYMDuvPCtKLXRQXRUWC_wFgyiRAp9WLzbTiwPWeKZ6CWzARNA67pDxAfaihIX-ZyNMogrN8neS354ONRlPCfmAT6r3vhBuF6ypCSL_g3Wv_k10QnZ8OWvfhTuHRlqc3iUEOrJUPPm96rLWC_uUI_q26jgMHeR8n5guJn0Qzq6BBsdBeYCdeV17wC62GDfVIL3uKdlwAKeeOQ"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-10 space-y-4">
+<span class="font-label uppercase text-[10px] tracking-widest text-primary border-l border-primary pl-3">Landmark Ruling</span>
+<h3 class="font-headline text-3xl italic">Halabi, Ernesto c/ P.E.N.</h3>
+<p class="max-w-md text-sm text-on-surface-variant font-light leading-relaxed">
+                            La consagración de las acciones de clase en el derecho argentino. El hito que definió la protección de derechos de incidencia colectiva.
+                        </p>
+<div class="pt-4">
+<button class="ghost-border px-6 py-2 text-[10px] font-label uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all">Analizar Precedente</button>
+</div>
+</div>
+</div>
+<!-- Case: Vadell -->
+<div class="md:col-span-4 glass-panel p-10 flex flex-col justify-between">
+<div>
+<div class="w-12 h-[1px] bg-primary mb-8"></div>
+<h3 class="font-headline text-2xl italic mb-4">Vadell c/ Provincia de Buenos Aires</h3>
+<p class="text-sm text-on-surface-variant font-light leading-relaxed">
+                            Responsabilidad del Estado por falta de servicio. El criterio fundamental sobre la omisión estatal.
+                        </p>
+</div>
+<div class="flex items-center justify-between text-[10px] font-label uppercase tracking-widest text-on-surface-variant/50 pt-8 border-t border-outline-variant/20">
+<span>CSJN 1984</span>
+<span class="material-symbols-outlined text-primary">bookmark</span>
+</div>
+</div>
+<!-- Case: Mosca -->
+<div class="md:col-span-4 bg-surface-container-low p-10 flex flex-col justify-between ghost-border group hover:bg-surface-container transition-colors">
+<div>
+<span class="material-symbols-outlined text-primary-container text-4xl mb-6">gavel</span>
+<h3 class="font-headline text-2xl italic mb-4">Mosca, Hugo c/ Pcia. de Buenos Aires</h3>
+<p class="text-sm text-on-surface-variant font-light leading-relaxed">
+                            El deber de seguridad en espectáculos públicos. Responsabilidad civil y causalidad.
+                        </p>
+</div>
+<button class="text-primary text-[10px] font-label uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">
+                        Leer Sumario <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+<!-- Restricted Documents -->
+<div class="md:col-span-8 relative overflow-hidden h-[300px] ghost-border flex items-center justify-center text-center px-12">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-10" data-alt="Blurred library of leather bound law books in deep shadows with a single beam of light hitting the spines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSl3_Cwl5sUP6Z5DHHzZl6eNkE-7ceseAxAQehbO-MVTaRyDhBKxeqvVpGxMNximPCY2jPyn5Y7_Bm5SVpI_DHZ4bArVc1eF5CHKCLYVp9QG0pkmpa2w7qMYxJ2A5D5rUhQpFYw9vAHPyx3WfAAU8ASnHenc3vh12aW7UC9dEj3jrDwTMn8MneD_Btzp3Kre0k2zgAC3s79Tug5vh0dA0DtxjtxG4EtNFqsefJ1MvutTLB_Kua5HfNoVccsOJIwwrCe1rV7POsLg"/>
+</div>
+<div class="relative z-10 space-y-6">
+<h3 class="font-headline text-2xl italic tracking-tighter">The Sovereign Elite Access</h3>
+<p class="text-sm text-on-surface-variant max-w-lg mx-auto opacity-70">
+                            Desbloquee el análisis profundo de los votos concurrentes y las disidencias más complejas de la historia jurídica.
+                        </p>
+<button class="bg-primary-container text-on-primary-fixed px-8 py-3 text-[10px] font-label uppercase tracking-[0.2em] gold-glow">Solicitar Credenciales</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Editorial Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 min-h-[500px]">
+<div class="bg-surface-container p-20 flex flex-col justify-center space-y-8">
+<h4 class="font-label uppercase text-xs tracking-[0.4em] text-primary">Intelligence Briefing</h4>
+<h2 class="font-headline text-4xl md:text-5xl italic tracking-tighter leading-tight">
+                    Reciba el análisis <br/> que los demás ignoran.
+                </h2>
+<div class="max-w-md">
+<input class="w-full editorial-input py-4 text-lg font-headline italic mb-6" placeholder="Su correo profesional" type="email"/>
+<button class="font-label uppercase text-[10px] tracking-widest border border-outline-variant px-8 py-3 hover:bg-on-surface hover:text-background transition-all">Suscribirse al Podcast</button>
+</div>
+</div>
+<div class="relative overflow-hidden bg-black">
+<img class="w-full h-full object-cover grayscale opacity-40 mix-blend-luminosity" data-alt="Dramatic high-contrast black and white photo of two people in formal attire shaking hands in a high-end office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA54D5eWS6j0HOljhPlGk3Y2V2NnZ0mWmeQGAvB3-DFEAR67gX1PhJMbRBeM5c_ubzmP6v2AnogfJIRCbeldzmFJ2qsKWqYE-81tymzVDF7eBElDEgdrWJng2ow9LQCeQvvKObLpH0v15sTb5S5ERs81alCKA18PtFJt33Znhpcqq5Uig4wZqBfvmQUn7Rdbr6j9-jTjoGFs0-aBt2N2Khvm3hhiluvBxulX0A9fm-67gQ82d19XJdwhGWeUPYpGkODxmuJEdYSOA"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest py-20 px-12 border-t-[0.5px] border-outline-variant/10">
+<div class="flex flex-col md:flex-row justify-between items-start gap-16">
+<div class="space-y-6">
+<span class="text-2xl font-serif font-bold tracking-tighter text-[#f2ca50]">LexSearch</span>
+<p class="text-xs text-on-surface-variant/40 max-w-xs leading-loose font-label uppercase tracking-widest">
+                    The Sovereign Archive. <br/>
+                    Elite legal intelligence for <br/>
+                    uncompromising practitioners.
+                </p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-24">
+<div class="space-y-4">
+<h5 class="font-label uppercase text-[10px] tracking-[0.2em] text-on-surface-variant">Explorar</h5>
+<ul class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant/60 space-y-3">
+<li><a class="hover:text-primary transition-colors" href="#">Jurisprudencia</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Doctrina</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Legislación</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-label uppercase text-[10px] tracking-[0.2em] text-on-surface-variant">Academia</h5>
+<ul class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant/60 space-y-3">
+<li><a class="hover:text-primary transition-colors" href="#">Mis Clases</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Podcast</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Certificaciones</a></li>
+</ul>
+</div>
+<div class="space-y-4 col-span-2 md:col-span-1">
+<h5 class="font-label uppercase text-[10px] tracking-[0.2em] text-on-surface-variant">Soporte</h5>
+<ul class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant/60 space-y-3">
+<li><a class="hover:text-primary transition-colors" href="#">Admin Panel</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacidad</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mt-20 pt-10 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-label uppercase tracking-[0.3em] text-on-surface-variant/30">
+<span>© 2024 LexSearch Platinum. All Rights Reserved.</span>
+<div class="flex gap-8">
+<a class="hover:text-primary" href="#">Twitter</a>
+<a class="hover:text-primary" href="#">LinkedIn</a>
+</div>
+</div>
+</footer>
+</body></html>
