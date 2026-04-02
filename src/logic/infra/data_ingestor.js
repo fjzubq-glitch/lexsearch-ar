@@ -3,7 +3,6 @@
  * Protocolo de Minería Soberana & Academic Vault (Cloudinary Streaming).
  */
 import PodcastsRegistry from '../../data/podcasts_registry.json';
-import TranscriptionsIndex from '../../data/transcriptions_index.json';
 
 class DataIngestor {
   constructor() {
@@ -14,7 +13,15 @@ class DataIngestor {
     };
     this.cacheKey = "lexsearch_sovereign_cache";
     this.podcasts = PodcastsRegistry.podcasts || [];
-    this.transcriptions = TranscriptionsIndex || [];
+    this.transcriptions = [];
+    
+    // Carga asíncrona del índice (Rescate Nivel 1)
+    fetch('/data/transcriptions_index.json')
+      .then(res => res.json())
+      .then(data => {
+        this.transcriptions = data.transcriptions || [];
+      })
+      .catch(err => console.error("[Ingestor] Error cargando índice en public/data:", err));
   }
 
   getFromCache(query) {
@@ -37,6 +44,7 @@ class DataIngestor {
    * Busca en el registro de Cloudinary por títulos, tópicos y materias.
    */
   async fetchAcademicVault(query) {
+    if (!query) return [];
     const q = query.toLowerCase();
     
     // 1. Registro de Podcasts (Cloudinary)
@@ -46,7 +54,7 @@ class DataIngestor {
       p.topics.some(t => t.toLowerCase().includes(q))
     ).map(p => ({ ...p, type: 'podcast', source: 'Registry' }));
 
-    // 2. Transcripciones Locales (Manual Injected)
+    // 2. Transcripciones Locales (Vercel Root Compatible)
     const transcriptionMatches = this.transcriptions.filter(t => 
       t.titulo.toLowerCase().includes(q) ||
       t.materia.toLowerCase().includes(q) ||
@@ -56,7 +64,7 @@ class DataIngestor {
       fuente: `Transcripción: ${t.materia} (${t.fecha})`,
       type: 'transcription',
       snippet: `Inyección literal: ${t.topics.join(', ')}`,
-      url: `/${t.path.replace('public/', '')}`
+      url: `/${t.path.replace(/^public\//, '')}`
     }));
 
     return [...matches, ...transcriptionMatches];
