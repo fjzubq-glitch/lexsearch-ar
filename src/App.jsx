@@ -97,8 +97,7 @@ const App = () => {
         </div>
       </nav>
 
-      <main className="pt-20">
-        <VoiceTutor isVisible={isVoiceActive} onClose={() => setIsVoiceActive(false)} leyesIndex={{ leyes }} />
+
 
         {/* Search Hero Section */}
         <section className="relative min-h-[50vh] flex flex-col items-center justify-center px-6 overflow-hidden bg-gradient-to-b from-white/50 to-transparent">

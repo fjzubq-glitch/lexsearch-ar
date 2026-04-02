@@ -2,7 +2,7 @@
  * LexSearch Sovereign Archive Miner - Data Ingestor
  * Protocolo de Minería Soberana (Infoleg / SAIJ / HernanCC)
  * 
- * Este módulo unifica las fuentes estatales con el índice local Platinum.
+ * Implementación de Smart Caching (localStorage) para Protocolos de Expansión.
  */
 
 class DataIngestor {
@@ -10,17 +10,43 @@ class DataIngestor {
     this.endpoints = {
       infoleg: "https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=",
       saij_hf: "https://huggingface.co/datasets/saij-argentina/leyes",
-      hernan_cc: "https://raw.githubusercontent.com/hernanCc/lex-argentina-index/main/index.json" // Protocolo Franklin
+      hernan_cc: "https://raw.githubusercontent.com/hernanCc/lex-argentina-index/main/index.json"
     };
+    this.cacheKey = "lexsearch_sovereign_cache";
   }
 
   /**
-   * Resuelve la búsqueda en el Repositorio Infoleg.
-   * Lógica de resolución de IDs basada en el Protocolo Platinum.
+   * Recupera datos del caché local (Smart Caching).
    */
+  getFromCache(query) {
+    try {
+      const cache = JSON.parse(localStorage.getItem(this.cacheKey) || "{}");
+      return cache[query.toLowerCase()] || null;
+    } catch (e) {
+      console.error("Error leyendo Smart Cache:", e);
+      return null;
+    }
+  }
+
+  /**
+   * Guarda datos en el caché local.
+   */
+  saveToCache(query, results) {
+    try {
+      const cache = JSON.parse(localStorage.getItem(this.cacheKey) || "{}");
+      cache[query.toLowerCase()] = {
+        timestamp: Date.now(),
+        data: results
+      };
+      localStorage.setItem(this.cacheKey, JSON.stringify(cache));
+      console.log(`[Smart Cache] Datos guardados para: ${query}`);
+    } catch (e) {
+      console.error("Error guardando en Smart Cache:", e);
+    }
+  }
+
   async fetchInfoleg(query) {
     // Simulación de búsqueda en tiempo real de Infoleg
-    // En producción esto conectaría con un Proxy/Scraper
     return [
       {
         id: `INF-${Math.floor(Math.random() * 100000)}`,
@@ -32,9 +58,6 @@ class DataIngestor {
     ];
   }
 
-  /**
-   * Consulta el Dataset SAIJ en Hugging Face.
-   */
   async fetchSAIJ(query) {
     return [
       {
@@ -47,46 +70,46 @@ class DataIngestor {
     ];
   }
 
-  /**
-   * Integración con la Metodología Franklin (HernanCC).
-   * Recupera metadatos del índice gestionado por Hernán García.
-   */
   async fetchHernanCC(query) {
-    try {
-      // Simulación de consulta al índice maestro de GitHub
-      return [
-        {
-          id: `HCC-${Date.now()}`,
-          titulo: `Mapeo Genealógico: ${query}`,
-          fuente: "HernanCC - Franklin Index",
-          snippet: `Rastreo de modificaciones y derogaciones para "${query}" según el índice de HernanCC.`,
-          url: "https://github.com/hernanCc/lex-argentina-index"
-        }
-      ];
-    } catch (e) {
-      console.error("Error en Franklin Index:", e);
-      return [];
-    }
+    return [
+      {
+        id: `HCC-${Date.now()}`,
+        titulo: `Mapeo Genealógico: ${query}`,
+        fuente: "HernanCC - Franklin Index",
+        snippet: `Rastreo de modificaciones y derogaciones para "${query}" según el índice de HernanCC.`,
+        url: "https://github.com/hernanCc/lex-argentina-index"
+      }
+    ];
   }
 
   /**
-   * Orquestador Global de Minería Soberana.
-   * Unifica resultados de múltiples fuentes con latencia premium.
+   * Orquestador Global de Minería con Smart Caching.
    */
   async consultExternalRepositories(query) {
     if (!query || query.length < 3) return [];
+
+    // 1. Intentar recuperación de Smart Cache
+    const cached = this.getFromCache(query);
+    if (cached) {
+      console.log(`[Smart Cache] HIT para: ${query}`);
+      return cached.data;
+    }
     
-    console.log(`[Minería Soberana] Iniciando Protocolo de Extracción: ${query}`);
+    console.log(`[Minería Soberana] MISS - Iniciando Extracción: ${query}`);
     
     try {
-      const results = await Promise.all([
+      const resultsArray = await Promise.all([
         this.fetchInfoleg(query),
         this.fetchSAIJ(query),
         this.fetchHernanCC(query)
       ]);
 
-      // Aplanamos y ordenamos por "relevancia simulada"
-      return results.flat().sort(() => Math.random() - 0.5);
+      const unifiedResults = resultsArray.flat().sort(() => Math.random() - 0.5);
+
+      // 2. Guardar en Smart Cache
+      this.saveToCache(query, unifiedResults);
+
+      return unifiedResults;
     } catch (error) {
       console.error("[Minería] Error crítico en la interconexión soberana:", error);
       return [];
