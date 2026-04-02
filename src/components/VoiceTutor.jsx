@@ -64,18 +64,19 @@ const VoiceTutor = ({ isVisible, onClose, leyesIndex, externalContext }) => {
     const masterContext = {
       indicesLocales: leyesIndex,
       mineriaSoberana: externalContext || [],
-      clasesGrabadas: PodcastsRegistry.podcasts || []
+      clasesGrabadas: PodcastsRegistry.podcasts || [],
+      transcripcionesInyectadas: externalContext?.filter(c => c.type === 'transcription') || []
     };
 
     const systemPrompt = `Actúa como un Profesor Adjunto de la UBA, experto en Derecho Argentino.
     Tu misión es explicar conceptos jurídicos usando el método del "Holding".
-    CONTEXTO MAESTRO DISPONIBLE: ${JSON.stringify(masterContext)}.
+    CONTEXTO DISPONIBLE: ${JSON.stringify(masterContext)}.
     
-    REGLA DE STREAMING:
-    Si el usuario pregunta sobre un tema tratado en una clase grabada (clasesGrabadas), DEBES citar la fecha e invitarlo a escuchar el audio. 
-    Ejemplo: "Ese tema se trató en la clase de 'Decretos' del 16/03/2026. Aquí tenés el audio en la sección de resultados."
+    REGLA DE CÁTEDRA:
+    1. Si hay 'transcripcionesInyectadas', DEBES citarlas como lo que dice el profesor en clase (fuente literal). 
+    2. Usa los temas de 'clasesGrabadas' para invitar a escuchar audios de Cloudinary.
     
-    Mantén un tono académico, elegante y preciso. Máximo 3 párrafos. No menciones ser una IA.`;
+    Estética Gold: Respuestas académicas, elegantes y breves (máx 3 párrafos).`;
 
     try {
       const response = await GeminiRestService.sendMessage(query, systemPrompt);

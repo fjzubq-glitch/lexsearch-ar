@@ -3,6 +3,7 @@
  * Protocolo de Minería Soberana & Academic Vault (Cloudinary Streaming).
  */
 import PodcastsRegistry from '../../data/podcasts_registry.json';
+import TranscriptionsIndex from '../../data/transcriptions_index.json';
 
 class DataIngestor {
   constructor() {
@@ -13,6 +14,7 @@ class DataIngestor {
     };
     this.cacheKey = "lexsearch_sovereign_cache";
     this.podcasts = PodcastsRegistry.podcasts || [];
+    this.transcriptions = TranscriptionsIndex || [];
   }
 
   getFromCache(query) {
@@ -45,27 +47,19 @@ class DataIngestor {
     ).map(p => ({ ...p, type: 'podcast', source: 'Registry' }));
 
     // 2. Transcripciones Locales (Manual Injected)
-    try {
-      // Inyección de LexSearch Gold
-      const response = await fetch('/src/data/transcriptions_index.json');
-      const transcriptions = await response.json();
-      const transcriptionMatches = transcriptions.filter(t => 
-        t.titulo.toLowerCase().includes(q) ||
-        t.materia.toLowerCase().includes(q) ||
-        t.topics.some(tp => tp.toLowerCase().includes(q))
-      ).map(t => ({
-        ...t,
-        fuente: `Transcripción: ${t.materia} (${t.fecha})`,
-        type: 'transcription',
-        snippet: `Fragmento recuperado sobre: ${t.topics.join(', ')}`,
-        url: `/${t.path}`
-      }));
+    const transcriptionMatches = this.transcriptions.filter(t => 
+      t.titulo.toLowerCase().includes(q) ||
+      t.materia.toLowerCase().includes(q) ||
+      t.topics.some(tp => tp.toLowerCase().includes(q))
+    ).map(t => ({
+      ...t,
+      fuente: `Transcripción: ${t.materia} (${t.fecha})`,
+      type: 'transcription',
+      snippet: `Inyección literal: ${t.topics.join(', ')}`,
+      url: `/${t.path}`
+    }));
 
-      return [...matches, ...transcriptionMatches];
-    } catch (e) {
-      console.warn("[Academic Vault] Fallo en carga de transcripciones:", e);
-      return matches;
-    }
+    return [...matches, ...transcriptionMatches];
   }
 
   async fetchInfoleg(query) {
