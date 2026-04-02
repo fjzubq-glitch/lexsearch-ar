@@ -37,14 +37,35 @@ class DataIngestor {
   async fetchAcademicVault(query) {
     const q = query.toLowerCase();
     
-    // Búsqueda en el registro de podcasts
+    // 1. Registro de Podcasts (Cloudinary)
     const matches = this.podcasts.filter(p => 
       p.titulo.toLowerCase().includes(q) || 
       p.materia.toLowerCase().includes(q) ||
       p.topics.some(t => t.toLowerCase().includes(q))
+    ).map(p => ({ ...p, type: 'podcast', source: 'Registry' }));
 
+    // 2. Transcripciones Locales (Manual Injected)
+    try {
+      // Inyección de LexSearch Gold
+      const response = await fetch('/src/data/transcriptions_index.json');
+      const transcriptions = await response.json();
+      const transcriptionMatches = transcriptions.filter(t => 
+        t.titulo.toLowerCase().includes(q) ||
+        t.materia.toLowerCase().includes(q) ||
+        t.topics.some(tp => tp.toLowerCase().includes(q))
+      ).map(t => ({
+        ...t,
+        fuente: `Transcripción: ${t.materia} (${t.fecha})`,
+        type: 'transcription',
+        snippet: `Fragmento recuperado sobre: ${t.topics.join(', ')}`,
+        url: `/${t.path}`
+      }));
 
-    return matches;
+      return [...matches, ...transcriptionMatches];
+    } catch (e) {
+      console.warn("[Academic Vault] Fallo en carga de transcripciones:", e);
+      return matches;
+    }
   }
 
   async fetchInfoleg(query) {

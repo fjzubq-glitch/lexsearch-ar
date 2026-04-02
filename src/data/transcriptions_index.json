@@ -1,0 +1,82 @@
+[
+  {
+    "id": "TRANS-ADM-1",
+    "materia": "Administrativo",
+    "fecha": "12/03/25",
+    "titulo": "Clase 1: Presentación, IA y Martina",
+    "path": "public/content/transcriptions/Administrativo/Clase_1_12_03_25.txt",
+    "topics": ["Presentación", "IA", "Martina", "Administrativo"]
+  },
+  {
+    "id": "TRANS-ADM-2",
+    "materia": "Administrativo",
+    "fecha": "16/03/26",
+    "titulo": "Clase 2: Fuentes, Fallo Berrochi",
+    "path": "public/content/transcriptions/Administrativo/Clase_2_16_03_26.txt",
+    "topics": ["Fuentes", "Fallo Berrochi", "Administrativo"]
+  },
+  {
+    "id": "TRANS-ADM-3",
+    "materia": "Administrativo",
+    "fecha": "19/03/26",
+    "titulo": "Clase 3: Organización, Teoría del Órgano",
+    "path": "public/content/transcriptions/Administrativo/Clase_3_19_03_26.txt",
+    "topics": ["Organización", "Teoría del Órgano", "Administrativo"]
+  },
+  {
+    "id": "TRANS-ADM-4",
+    "materia": "Administrativo",
+    "fecha": "26/03/26",
+    "titulo": "Clase 4: Algoritmos y Scoring",
+    "path": "public/content/transcriptions/Administrativo/Clase_4_26_03_26.txt",
+    "topics": ["Algoritmos", "Scoring", "Administrativo"]
+  },
+  {
+    "id": "TRANS-ADM-5",
+    "materia": "Administrativo",
+    "fecha": "30/03/26",
+    "titulo": "Clase 5: Acto Administrativo y principios algorítmicos",
+    "path": "public/content/transcriptions/Administrativo/Clase_5_30_03_26.txt",
+    "topics": ["Acto Administrativo", "Principios Algorítmicos", "Administrativo"]
+  },
+  {
+    "id": "TRANS-CON-1",
+    "materia": "Contratos",
+    "fecha": "12/03/26",
+    "titulo": "Clase 1: Comunidad de 83, Autocontrato art. 368",
+    "path": "public/content/transcriptions/Contratos/Clase_1_12_03_26.txt",
+    "topics": ["Comunidad de 83", "Autocontrato", "Art. 368", "Contratos"]
+  },
+  {
+    "id": "TRANS-CON-2",
+    "materia": "Contratos",
+    "fecha": "16/03/26",
+    "titulo": "Clase 2: Clasificación, Consumo",
+    "path": "public/content/transcriptions/Contratos/Clase_2_16_03_26.txt",
+    "topics": ["Clasificación", "Consumo", "Contratos"]
+  },
+  {
+    "id": "TRANS-CON-3",
+    "materia": "Contratos",
+    "fecha": "19/03/26",
+    "titulo": "Clase 3: Consentimiento y Oferta",
+    "path": "public/content/transcriptions/Contratos/Clase_3_19_03_26.txt",
+    "topics": ["Consentimiento", "Oferta", "Contratos"]
+  },
+  {
+    "id": "TRANS-CON-4",
+    "materia": "Contratos",
+    "fecha": "26/03/26",
+    "titulo": "Clase 4: Oferente/Aceptante, Cláusulas Abusivas",
+    "path": "public/content/transcriptions/Contratos/Clase_4_26_03_26.txt",
+    "topics": ["Oferente", "Aceptante", "Cláusulas Abusivas", "Contratos"]
+  },
+  {
+    "id": "TRANS-CON-5",
+    "materia": "Contratos",
+    "fecha": "30/03/26",
+    "titulo": "Clase 5: Pourparlers y Tratativas",
+    "path": "public/content/transcriptions/Contratos/Clase_5_30_03_26.txt",
+    "topics": ["Pourparlers", "Tratativas", "Contratos"]
+  }
+]
