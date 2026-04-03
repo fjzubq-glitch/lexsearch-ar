@@ -53,6 +53,14 @@ class ApiRotator {
   }
 
   /**
+   * Retorna el índice de la llave actual (0-5).
+   * @returns {number}
+   */
+  getCurrentIndex() {
+    return this.currentIndex;
+  }
+
+  /**
    * Marca la llave actual como fallida y rota a la siguiente inmediatamente.
    */
   handleFail() {
